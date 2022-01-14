@@ -6,7 +6,6 @@
 package com.mycompany.hoja_6_ejercicio_1;
 
 import BaseDatos.GestorDB;
-import static BaseDatos.GestorDB.gestor;
 
 /**
  *
@@ -21,7 +20,7 @@ public class Main
     public static void main(String[] args)
     {
         // TODO code application logic here
-        GestorDB gestor = gestor();
+        
     }
     
 }
