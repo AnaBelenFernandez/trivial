@@ -7,23 +7,24 @@ import java.time.LocalDate;
  *
  * @author usuario
  */
-public class Usuario {
+public class Usuario
+{
     private int id;
     private String usuario;
     private String password;
     private String nombre;
     private String apellidos;
-    private LocalDate fecha_nacimiento;
+    private Date fecha_nacimiento;
     private int num_accesos;
     private int test_realizados;
     private float puntuacion_media;
-    private String pwd;
+    //private String pwd;
 
     public Usuario()
     {
     }
 
-    public Usuario(String nombre, String apellidos, LocalDate fecha_nacimiento, String usuario, String password)
+    public Usuario(String nombre, String apellidos, Date fecha_nacimiento, String usuario, String password)
     {
         this.usuario = usuario;
         this.password = password;
@@ -31,8 +32,6 @@ public class Usuario {
         this.apellidos = apellidos;
         this.fecha_nacimiento = fecha_nacimiento;
     }
-
-   
 
     public int getId()
     {
@@ -84,12 +83,12 @@ public class Usuario {
         this.apellidos = apellidos;
     }
 
-    public LocalDate getFecha_nacimiento()
+    public Date getFecha_nacimiento()
     {
         return fecha_nacimiento;
     }
 
-    public void setFecha_nacimiento(LocalDate fecha_nacimiento)
+    public void setFecha_nacimiento(Date fecha_nacimiento)
     {
         this.fecha_nacimiento = fecha_nacimiento;
     }
@@ -123,5 +122,5 @@ public class Usuario {
     {
         this.puntuacion_media = puntuacion_media;
     }
-    
+
 }
