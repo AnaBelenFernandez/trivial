@@ -1,5 +1,7 @@
 package Modelo;
 
+import java.util.List;
+
 /**
  *
  * @author usuario
@@ -13,12 +15,13 @@ public class Pregunta {
     private String foto;
     private int veces_formulada;
     private int veces_acertada;
+    private List<Respuesta> respuestas;
 
     public Pregunta()
     {
     }
 
-    public Pregunta(int id, String enunciado, String categoria, int nivel, String foto, int veces_formulada, int veces_acertada)
+    public Pregunta(int id, String enunciado, String categoria, int nivel, String foto, int veces_formulada, int veces_acertada, List<Respuesta> respuestas)
     {
         this.id = id;
         this.enunciado = enunciado;
@@ -27,6 +30,7 @@ public class Pregunta {
         this.foto = foto;
         this.veces_formulada = veces_formulada;
         this.veces_acertada = veces_acertada;
+        this.respuestas = respuestas;
     }
 
     public int getId()
@@ -98,6 +102,15 @@ public class Pregunta {
     {
         this.veces_acertada = veces_acertada;
     }
-    
-    
+
+    public List<Respuesta> getRespuestas()
+    {
+        return respuestas;
+    }
+
+    public void setRespuestas(List<Respuesta> respuestas)
+    {
+        this.respuestas = respuestas;
+    }
+
 }
