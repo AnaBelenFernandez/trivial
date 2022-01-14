@@ -1,4 +1,4 @@
-package com.mycompany.hoja_6_ejercicio_1;
+package BaseDatos;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -11,8 +11,9 @@ import java.sql.SQLException;
 public class GestorDB
 {
     private Connection conexion;
+    private static GestorDB gestorDB;
 
-    public GestorDB()
+    private GestorDB()
     {
         try
         {
@@ -26,5 +27,10 @@ public class GestorDB
         {
             System.out.println(ex.toString());
         }
+    }
+    
+    public static GestorDB gestor(){
+        if(gestorDB == null) gestorDB = new GestorDB();
+        return gestorDB;
     }
 }
