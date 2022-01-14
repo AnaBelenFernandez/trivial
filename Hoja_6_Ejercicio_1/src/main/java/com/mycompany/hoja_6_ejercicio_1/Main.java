@@ -6,8 +6,11 @@
 package com.mycompany.hoja_6_ejercicio_1;
 
 import BaseDatos.GestorDB;
+<<<<<<< HEAD
 import static BaseDatos.GestorDB.gestor;
 import java.util.Scanner;
+=======
+>>>>>>> f8e443f372bd68bf9f5348da4359f2b6e55e80d7
 
 /**
  *
@@ -22,6 +25,7 @@ public class Main
     public static void main(String[] args)
     {
         // TODO code application logic here
+<<<<<<< HEAD
         GestorDB gestor = gestor();
            int opcion=0;
         do{
@@ -45,6 +49,9 @@ public class Main
             default:
                 System.out.println("No es una opción válida");
         }}while(opcion !=5);
+=======
+        
+>>>>>>> f8e443f372bd68bf9f5348da4359f2b6e55e80d7
     }
     
 }
