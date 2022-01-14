@@ -1,6 +1,7 @@
 package Modelo;
 
 import java.sql.Date;
+import java.time.LocalDate;
 
 /**
  *
@@ -12,14 +13,26 @@ public class Usuario {
     private String password;
     private String nombre;
     private String apellidos;
-    private Date fecha_nacimiento;
+    private LocalDate fecha_nacimiento;
     private int num_accesos;
     private int test_realizados;
     private float puntuacion_media;
+    private String pwd;
 
     public Usuario()
     {
     }
+
+    public Usuario(String nombre, String apellidos, LocalDate fecha_nacimiento, String usuario, String password)
+    {
+        this.usuario = usuario;
+        this.password = password;
+        this.nombre = nombre;
+        this.apellidos = apellidos;
+        this.fecha_nacimiento = fecha_nacimiento;
+    }
+
+   
 
     public int getId()
     {
@@ -71,12 +84,12 @@ public class Usuario {
         this.apellidos = apellidos;
     }
 
-    public Date getFecha_nacimiento()
+    public LocalDate getFecha_nacimiento()
     {
         return fecha_nacimiento;
     }
 
-    public void setFecha_nacimiento(Date fecha_nacimiento)
+    public void setFecha_nacimiento(LocalDate fecha_nacimiento)
     {
         this.fecha_nacimiento = fecha_nacimiento;
     }

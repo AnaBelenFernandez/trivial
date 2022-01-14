@@ -6,11 +6,14 @@
 package com.mycompany.hoja_6_ejercicio_1;
 
 import BaseDatos.GestorDB;
-<<<<<<< HEAD
-import static BaseDatos.GestorDB.gestor;
+import Modelo.Usuario;
+import java.time.DateTimeException;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+
+
 import java.util.Scanner;
-=======
->>>>>>> f8e443f372bd68bf9f5348da4359f2b6e55e80d7
+
 
 /**
  *
@@ -25,8 +28,8 @@ public class Main
     public static void main(String[] args)
     {
         // TODO code application logic here
-<<<<<<< HEAD
-        GestorDB gestor = gestor();
+
+        GestorDB gestor = new GestorDB();
            int opcion=0;
         do{
         Scanner teclado=new Scanner(System.in);
@@ -39,6 +42,8 @@ public class Main
             System.out.println("5-Salir");
         switch(opcion){
             case 1:
+                Usuario user=pedirDatos();
+                gestor.loginUser(user.getNombre(), user.getApellidos(), user.getFecha_nacimiento(), user.getUsuario(), user.getPassword());
                 break;
             case 2:
                 break;
@@ -48,10 +53,39 @@ public class Main
                 break;
             default:
                 System.out.println("No es una opción válida");
-        }}while(opcion !=5);
-=======
-        
->>>>>>> f8e443f372bd68bf9f5348da4359f2b6e55e80d7
+        }}while(opcion !=5);}    
+    
+    private static Usuario pedirDatos(){
+    Scanner teclado=new Scanner (System.in);
+        System.out.println("Introduzca nombre");
+        String nombre=teclado.nextLine();
+        System.out.println("Introduzca apellidos");
+        String apellidos=teclado.nextLine();
+        System.out.println("Introduzca fecha de nacimiento");
+        LocalDate fechaNac=IntroFecha("Introduzca fecha de nacimiento");
+        System.out.println("Introduzca nombre de usuario");
+        String usuario=teclado.nextLine();
+        System.out.println("introduzca password");
+        String contra=teclado.nextLine();   
+        Usuario user=new Usuario(nombre, apellidos, fechaNac,usuario,contra);
+        return user;}
+        public static LocalDate IntroFecha(String mensaje) {
+        boolean valido = false;
+        LocalDate fechaTeclado = LocalDate.now();
+        do {
+
+            Scanner teclado = new Scanner(System.in);
+            System.out.println("Introduce la fecha (dd-mm-yyyy):");
+            try {
+                DateTimeFormatter formateo = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+                fechaTeclado = LocalDate.parse(teclado.next(), formateo);
+
+            } catch (DateTimeException e) {
+                System.err.println("Formato de fecha incorrecto.");
+               
+            }
+        } while (!valido);
+        return fechaTeclado;
     }
     
 }
