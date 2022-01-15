@@ -1,5 +1,6 @@
 package Modelo;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -19,6 +20,7 @@ public class Pregunta {
 
     public Pregunta()
     {
+        respuestas = new ArrayList();
     }
 
     public Pregunta(int id, String enunciado, String categoria, int nivel, String foto, int veces_formulada, int veces_acertada, List<Respuesta> respuestas)
@@ -111,6 +113,10 @@ public class Pregunta {
     public void setRespuestas(List<Respuesta> respuestas)
     {
         this.respuestas = respuestas;
+    }
+    
+    public void addRespuesta(Respuesta respuesta){
+        this.respuestas.add(respuesta);
     }
 
 }

@@ -6,7 +6,7 @@ package Modelo;
  */
 public class Respuesta {
     private int id;
-private Pregunta pregunta;
+    private Pregunta pregunta;
     private String texto;
     private boolean correcta;
     private String foto;

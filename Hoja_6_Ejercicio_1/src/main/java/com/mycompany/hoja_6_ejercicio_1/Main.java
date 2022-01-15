@@ -6,11 +6,16 @@
 package com.mycompany.hoja_6_ejercicio_1;
 
 import BaseDatos.GestorDB;
+import Modelo.Pregunta;
+import Modelo.Respuesta;
 import Modelo.Usuario;
+import Util.GestorFicheros;
+import java.io.File;
 import java.sql.Date;
 import java.time.DateTimeException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.List;
 
 import java.util.Scanner;
 
@@ -29,6 +34,7 @@ public class Main
         // TODO code application logic here
 
         GestorDB gestor = new GestorDB();
+        GestorFicheros gestorFicheros = new GestorFicheros();
         int opcion = 0;
 
         do
@@ -66,7 +72,20 @@ public class Main
                     System.out.println("");
                     break;
                 case 2:
+                    
+                    File fichero = new File("fichero.csv");
+                    List<Pregunta> preguntas = gestorFicheros.leerPreguntasCSV(fichero);
+                    
+                    for(Pregunta pregunta: preguntas){
+                        System.out.println(pregunta.getEnunciado() + " - " +
+                                pregunta.getCategoria() + " - " + pregunta.getNivel());
+                        for(Respuesta resp: pregunta.getRespuestas()){
+                            System.out.println(resp.getTexto() + " - " + resp.isCorrecta());
+                            
+                        }
+                    }
                     break;
+
                 case 3:
                     break;
                 case 4:
