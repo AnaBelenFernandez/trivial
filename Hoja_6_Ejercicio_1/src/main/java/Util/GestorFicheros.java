@@ -40,7 +40,6 @@ public class GestorFicheros
                     p.setNivel(Integer.parseInt(fields[3]));
                     
                     preguntas.add(p);
-                    System.out.println("Pregunta add correctamente");
                 }else if(fields[0].equalsIgnoreCase("R")){
                     Respuesta r = new Respuesta();
                     
@@ -50,7 +49,6 @@ public class GestorFicheros
                     r.setPregunta(preguntas.get(preguntas.size()-1));
                     
                     preguntas.get(preguntas.size()-1).addRespuesta(r);
-                    System.out.println("Respuesta add correctamente");
                 }
                 line = br.readLine();
             }

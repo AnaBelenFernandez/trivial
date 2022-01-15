@@ -76,14 +76,16 @@ public class Main
                     File fichero = new File("fichero.csv");
                     List<Pregunta> preguntas = gestorFicheros.leerPreguntasCSV(fichero);
                     
-                    for(Pregunta pregunta: preguntas){
-                        System.out.println(pregunta.getEnunciado() + " - " +
-                                pregunta.getCategoria() + " - " + pregunta.getNivel());
-                        for(Respuesta resp: pregunta.getRespuestas()){
-                            System.out.println(resp.getTexto() + " - " + resp.isCorrecta());
-                            
-                        }
-                    }
+//                    for(Pregunta pregunta: preguntas){
+//                        System.out.println(pregunta.getEnunciado() + " - " +
+//                                pregunta.getCategoria() + " - " + pregunta.getNivel());
+//                        for(Respuesta resp: pregunta.getRespuestas()){
+//                            System.out.println(resp.getTexto() + " - " + resp.isCorrecta());    
+//                        }
+//                    }
+                    
+                    int pregAdd = gestor.addPreguntas(preguntas);
+                    System.out.println(pregAdd + " preguntas añadidias correctamente");
                     break;
 
                 case 3:
