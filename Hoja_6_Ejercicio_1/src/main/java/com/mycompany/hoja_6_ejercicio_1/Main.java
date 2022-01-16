@@ -53,13 +53,14 @@ public class Main
             System.out.println("[ 5 - Salir                            ]");
             System.out.println("[======================================]");
             opcion = teclado.nextInt();
+            teclado.nextLine();
             System.out.println("");
             switch (opcion)
             {
                 case 1:
                     boolean respuesta;
                     Usuario user = pedirDatos();
-                    
+
                     respuesta = gestor.loginUser(user.getNombre(), user.getApellidos(),
                             user.getFecha_nacimiento(), user.getUsuario(),
                             user.getPassword());
@@ -72,10 +73,10 @@ public class Main
                     System.out.println("");
                     break;
                 case 2:
-                    
+
                     File fichero = new File("fichero.csv");
                     List<Pregunta> preguntas = gestorFicheros.leerPreguntasCSV(fichero);
-                    
+
 //                    for(Pregunta pregunta: preguntas){
 //                        System.out.println(pregunta.getEnunciado() + " - " +
 //                                pregunta.getCategoria() + " - " + pregunta.getNivel());
@@ -83,14 +84,24 @@ public class Main
 //                            System.out.println(resp.getTexto() + " - " + resp.isCorrecta());    
 //                        }
 //                    }
-                    
                     int pregAdd = gestor.addPreguntas(preguntas);
                     System.out.println(pregAdd + " preguntas añadidias correctamente");
                     break;
 
                 case 3:
+                    System.out.println("¡Introduzca la categoria para visualizar las preguntas adecuadas!");
+                    String categoria = teclado.nextLine();
+                    gestor.preguntasPorCategoria(categoria);
                     break;
                 case 4:
+                    gestor.jugar("nehite", "nehi");
+                    /*  INCOMPLETO
+                        - Contabilizar usuario ha realizado un test más.
+                        - Registrar que la respuesta ha sido respondida una vez más.
+                        - Registrar pregunta acertada si se acierta una vez más.
+                        - Comprobar si un usuario acierta o no una pregunta eligiendo la respuesta correcta.
+                     */
+
                     break;
                 case 5:
                     break;
