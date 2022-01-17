@@ -75,12 +75,7 @@ public class GestorDB
         return contadorCorrectos;
     }
 
-    public void preguntasCategoria(String categoria)
-    {
-        Connection conexion = Conexion.getInstance().getConnection();
-        String sql = "SELECT id, enunciado FROM preguntas where categoria = " + categoria;
-
-    }
+    
 
     //Ejercicio_3: Visualizar preguntas de una categoria.
     public void preguntasPorCategoria(String categoria)

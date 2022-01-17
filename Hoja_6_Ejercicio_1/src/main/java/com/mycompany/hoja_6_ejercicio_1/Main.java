@@ -85,7 +85,7 @@ public class Main
 //                        }
 //                    }
                     int pregAdd = gestor.addPreguntas(preguntas);
-                    System.out.println(pregAdd + " preguntas añadidias correctamente");
+                    System.out.println(pregAdd + " preguntas añadidas correctamente");
                     break;
 
                 case 3:
