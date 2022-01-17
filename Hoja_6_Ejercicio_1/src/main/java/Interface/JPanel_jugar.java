@@ -5,6 +5,8 @@
  */
 package Interface;
 
+import java.awt.Frame;
+
 /**
  *
  * @author usuario
@@ -17,6 +19,10 @@ public class JPanel_jugar extends javax.swing.JPanel
      */
     public JPanel_jugar()
     {
+        initComponents();
+    }
+    public JPanel_jugar(Frame parent, boolean modal) {
+        
         initComponents();
     }
 
