@@ -5,6 +5,8 @@
  */
 package Interface;
 
+import BaseDatos.GestorDB;
+
 /**
  *
  * @author usuario
@@ -101,12 +103,17 @@ public class JPanel_jugar extends javax.swing.JPanel
 
     private void jButton_jugarActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_jButton_jugarActionPerformed
     {//GEN-HEADEREND:event_jButton_jugarActionPerformed
-        String nombre = jTextField_nombreUsuario.getText();
+        String usuario = jTextField_nombreUsuario.getText();
         String password = jTextField_password.getText();
         //verificar que nombre y password son correctos
+        GestorDB gestor = new GestorDB();
+        gestor.jugar(usuario, password);
     }//GEN-LAST:event_jButton_jugarActionPerformed
 
-    //public boolean()
+    public boolean verificar(String usuario, String password){
+        String sql = "SELECT ";
+        return false;
+    }
     
     private void jTextField_nombreUsuarioActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_jTextField_nombreUsuarioActionPerformed
     {//GEN-HEADEREND:event_jTextField_nombreUsuarioActionPerformed
