@@ -5,7 +5,11 @@
  */
 package Interface;
 
+<<<<<<< HEAD
+import java.awt.Frame;
+=======
 import BaseDatos.GestorDB;
+>>>>>>> 8d03e5981b995a2c727176e5da66315b261ba421
 
 /**
  *
@@ -19,6 +23,10 @@ public class JPanel_jugar extends javax.swing.JPanel
      */
     public JPanel_jugar()
     {
+        initComponents();
+    }
+    public JPanel_jugar(Frame parent, boolean modal) {
+        
         initComponents();
     }
 
