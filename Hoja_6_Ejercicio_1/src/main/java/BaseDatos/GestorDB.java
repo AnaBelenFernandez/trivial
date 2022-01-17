@@ -1,11 +1,13 @@
 package BaseDatos;
 
 import Modelo.Pregunta;
+import Modelo.Respuesta;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 import java.util.logging.Level;
@@ -154,9 +156,11 @@ public class GestorDB
                 System.out.print("Se ha iniciado sesion con:");
                 System.out.printf("%-10s Nombre: %-10s Apellidos: %-25s\n", usuario, nombre, apellidos);
 
-                contabilizarAcceso(resultUsuario.getInt("num_accesos") + 1);
+                contabilizarAcceso(resultUsuario.getInt("num_accesos") + 1, usuario);
 
                 preguntarAUsuario();
+
+                aumentarTestRealizados(resultUsuario.getInt("test_realizados"), usuario);
             }
 
         } catch (SQLException ex)
@@ -166,14 +170,27 @@ public class GestorDB
     }
 
     //aumenta el numero de accesos de un usuario cada vez que inicia sesion
-    public void contabilizarAcceso(int numeroAccesos) throws SQLException
+    public void contabilizarAcceso(int numeroAccesos, String usuario) throws SQLException
     {
-        String sql = "UPDATE usuarios SET num_accesos=?";
+        String sql = "UPDATE usuarios SET num_accesos=? WHERE usuario=?";
 
         PreparedStatement update = Conexion.getInstance().getConnection().prepareStatement(sql);
         update.setInt(1, numeroAccesos);
+        update.setString(2, usuario);
         int numeroRegistros = update.executeUpdate();
-        System.out.println("Aumentado el numero de registros del usuario");
+        // System.out.println("Aumentado el numero de registros del usuario");
+    }
+
+    //aumenta el numero de test realizados de un usuario cuando realiza un test
+    public void aumentarTestRealizados(int test_realizados, String usuario) throws SQLException
+    {
+        String sql = "UPDATE usuarios SET test_realizados=? WHERE usuario=?";
+
+        PreparedStatement update = Conexion.getInstance().getConnection().prepareStatement(sql);
+        update.setInt(1, test_realizados + 1);
+        update.setString(2, usuario);
+        int numeroRegistros = update.executeUpdate();
+        // System.out.println("Aumentado el numero de registros del usuario");
     }
 
     //ofrece 4 preguntas aleatorias al usuario
@@ -194,41 +211,87 @@ public class GestorDB
             int veces_acertada = resultPreguntas.getInt("veces_acertada");
 
             System.out.printf("%-5s %-10s\n", id, enunciado);
-            String respuestas = respuestasPorPregunta(id);
-            System.out.println(respuestas);
-            //el usuario responde 1/2/3/4 en funcion de la respuesta
-            System.out.println("Introduzca su respuesta: ");
+            //obtenemos las respuestas de dicha pregunta y las mostramos
+            List<Respuesta> respuestas = respuestasPorPregunta(id);
+            int contador = 1;
+            String cadenaRespuestas = "";
+            for (Respuesta respuesta : respuestas)
+            {
+                cadenaRespuestas += contador + " " + respuesta.getTexto() + "\n";
+                contador++;
+            }
+            System.out.println(cadenaRespuestas);
+
+            //el usuario responde 1/2/3/4 en funcion de la respuesta. Se comprueba si dicha respuesta es correcta
+            System.out.println("Introduzca su respuesta: (1/2/3/4)");
             int respuestaUsuario = teclado.nextInt();
             teclado.nextLine();
-            //PEENDIENTE comprobar si la respuesta del usuario es una respuesta acertada o no. BBDD respuestas -> correcta -> 1.
-            
-            aumentarPreguntaFormulada(veces_formulada);
+            if (respuestas.get(respuestaUsuario - 1).isCorrecta())
+            {
+                System.out.println("Enhorabuena, ¡respuesta acertada!");
+                aumentarPreguntaAcertada(veces_acertada, id);
+            } else
+            {
+                System.out.println("¡Oh vaya! ha fallado. Intentelo de nuevo D: ");
+            }
+            //Contabilizamos las respuestas en la base de datos
+            aumentarRespuestaRespondida(respuestas.get(respuestaUsuario - 1).getVeces_respondida(), id);
+            aumentarPreguntaFormulada(veces_formulada, id);
         }
     }
 
-    //Devuelve una cadena de respuestas posibles a una pregunta
-    public String respuestasPorPregunta(int idPregunta) throws SQLException
+    //Devuelve una lista de respuestas posibles a una pregunta
+    public List<Respuesta> respuestasPorPregunta(int idPregunta) throws SQLException
     {
-        String cadena = "";
+        List<Respuesta> respuestas = new ArrayList();
         String sqlRespuestas = "SELECT * FROM respuestas WHERE pregunta_id=?";
         PreparedStatement consultaRespuestas = Conexion.getInstance().getConnection().prepareStatement(sqlRespuestas);
         consultaRespuestas.setInt(1, idPregunta);
         ResultSet result = consultaRespuestas.executeQuery();
-        int contador = 1;
+
         while (result.next())
         {
-            cadena += contador + " " + result.getString("texto") + "\n";
-            contador++;
+            Respuesta r = new Respuesta();
+
+            r.setId(result.getInt("id"));
+            //r.setPregunta(result.getObject("pregunta_id"));
+            r.setTexto(result.getString("texto"));
+            r.setCorrecta(result.getBoolean("correcta"));
+            r.setFoto(result.getString("foto"));
+            r.setVeces_respondida(result.getInt("veces_respondida"));
+            respuestas.add(r);
         }
-        return cadena;
+        return respuestas;
     }
 
-    public void aumentarPreguntaFormulada(int veces_formulada) throws SQLException
+    //Aumenta el numero de veces que una pregunta es formulada
+    public void aumentarPreguntaFormulada(int veces_formulada, int id) throws SQLException
     {
-        String sql = "UPDATE preguntas SET veces_formulada=?";
+        String sql = "UPDATE preguntas SET veces_formulada=? WHERE id=?";
         PreparedStatement update = Conexion.getInstance().getConnection().prepareStatement(sql);
         update.setInt(1, veces_formulada + 1);
+        update.setInt(2, id);
         update.executeUpdate();
-        System.out.println("Pregunta formulada " + veces_formulada + 1 + " veces");
+        // System.out.println("Pregunta formulada " + veces_formulada + 1 + " veces");
+    }
+
+    //Aumenta el numero de veces que una pregunta es acertada
+    public void aumentarPreguntaAcertada(int veces_acertada, int id) throws SQLException
+    {
+        String sql = "UPDATE preguntas SET veces_acertada=? WHERE id=?";
+        PreparedStatement update = Conexion.getInstance().getConnection().prepareStatement(sql);
+        update.setInt(1, veces_acertada + 1);
+        update.setInt(2, id);
+        update.executeUpdate();
+    }
+
+    //Aumenta el numero de veces que se responde una respuesta
+    public void aumentarRespuestaRespondida(int veces_respondida, int id) throws SQLException
+    {
+        String sql = "UPDATE respuestas SET veces_respondida=? WHERE id=?";
+        PreparedStatement update = Conexion.getInstance().getConnection().prepareStatement(sql);
+        update.setInt(1, veces_respondida + 1);
+        update.setInt(2, id);
+        update.executeUpdate();
     }
 }

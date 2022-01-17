@@ -94,16 +94,16 @@ public class Main
                     gestor.preguntasPorCategoria(categoria);
                     break;
                 case 4:
-                    gestor.jugar("nehite", "nehi");
-                    /*  INCOMPLETO
-                        - Contabilizar usuario ha realizado un test más.
-                        - Registrar que la respuesta ha sido respondida una vez más.
-                        - Registrar pregunta acertada si se acierta una vez más.
-                        - Comprobar si un usuario acierta o no una pregunta eligiendo la respuesta correcta.
-                     */
-
+                    System.out.println("Introduzca Nombre de usuario:");
+                    String usuario = teclado.nextLine();
+                    System.out.println("Introduzca contraseña:");
+                    String password = teclado.nextLine();
+                    gestor.jugar(usuario, password);
+                    //INCOMPLETO, FALTA COMPLETAR LAS CONTRASEÑAS EN MD5
                     break;
                 case 5:
+                    System.out.println("Cerrando aplicacion...");
+                    System.exit(0);
                     break;
                 default:
                     System.out.println("No es una opción válida");
