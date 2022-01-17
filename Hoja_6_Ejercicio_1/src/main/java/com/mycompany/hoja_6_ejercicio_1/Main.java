@@ -98,6 +98,7 @@ public class Main
                     String usuario = teclado.nextLine();
                     System.out.println("Introduzca contraseña:");
                     String password = teclado.nextLine();
+                    //para la interfaz grafica, queda validar que estan correctos
                     gestor.jugar(usuario, password);
                     //INCOMPLETO, FALTA COMPLETAR LAS CONTRASEÑAS EN MD5
                     break;
