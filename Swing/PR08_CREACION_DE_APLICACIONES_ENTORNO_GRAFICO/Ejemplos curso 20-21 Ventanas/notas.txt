@@ -1,0 +1,3 @@
+Los ejemplos del 1 al 4 son los básicos. Con esto ya pueden hacer hasta la hoja 2.
+El ejemplo de Layouts es para hacer la hoja 3 y la hoja 3 2º parte. Es para explicar los layout.
+Y el ejemplo de varias ventanas es para hacerle al final.
