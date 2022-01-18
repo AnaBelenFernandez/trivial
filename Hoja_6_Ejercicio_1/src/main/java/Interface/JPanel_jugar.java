@@ -5,7 +5,14 @@
  */
 package Interface;
 
+import BaseDatos.Conexion;
 import BaseDatos.GestorDB;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -107,14 +114,34 @@ public class JPanel_jugar extends javax.swing.JPanel
         String password = jTextField_password.getText();
         //verificar que nombre y password son correctos
         GestorDB gestor = new GestorDB();
-        gestor.jugar(usuario, password);
+        if (verificar(usuario, password))
+            gestor.jugar(usuario, password);
+        else
+            JOptionPane.showMessageDialog(null, "Se han introducido erróneamente la contraseña o nombre de usuario :S");
     }//GEN-LAST:event_jButton_jugarActionPerformed
 
-    public boolean verificar(String usuario, String password){
-        String sql = "SELECT ";
+    public boolean verificar(String usuario, String password)
+    {
+        String sql = "SELECT usuario, password from usuarios WHERE usuario=? AND password=?";
+        try
+        {
+            PreparedStatement consultaUsuario = Conexion.getInstance().getConnection().prepareStatement(sql);
+            consultaUsuario.setString(1, usuario);
+            consultaUsuario.setString(2, password);
+            ResultSet result = consultaUsuario.executeQuery();
+
+            result.last();
+            int numeroConsultas = result.getRow();
+           //Public static int showMessageDialog(component, titulo, tipomensaje,icono)
+            JOptionPane.showMessageDialog(null, "NUMERO DE CONSULTAS ->"+numeroConsultas);
+            
+        } catch (SQLException ex)
+        {
+            Logger.getLogger(JPanel_jugar.class.getName()).log(Level.SEVERE, null, ex);
+        }
         return false;
     }
-    
+
     private void jTextField_nombreUsuarioActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_jTextField_nombreUsuarioActionPerformed
     {//GEN-HEADEREND:event_jTextField_nombreUsuarioActionPerformed
         // TODO add your handling code here:
