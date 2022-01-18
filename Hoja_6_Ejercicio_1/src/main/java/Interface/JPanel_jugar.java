@@ -5,9 +5,6 @@
  */
 package Interface;
 
-<<<<<<< HEAD
-=======
-
 import BaseDatos.Conexion;
 import BaseDatos.GestorDB;
 import java.sql.PreparedStatement;
@@ -17,11 +14,9 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
->>>>>>> 946629068967adaf8b5c361c28c5390e0e9f508c
 import java.awt.Frame;
 
 import BaseDatos.GestorDB;
-
 
 /**
  *
@@ -37,12 +32,13 @@ public class JPanel_jugar extends javax.swing.JPanel
     {
         initComponents();
     }
-    public JPanel_jugar(Frame parent, boolean modal) {
-        
+
+    public JPanel_jugar(Frame parent, boolean modal)
+    {
+
         initComponents();
-         setSize(500,500);
-        
-       
+        setSize(500, 500);
+
     }
 
     /**
@@ -138,6 +134,7 @@ public class JPanel_jugar extends javax.swing.JPanel
 
     public boolean verificar(String usuario, String password)
     {
+        boolean verificado = false;
         String sql = "SELECT usuario, password from usuarios WHERE usuario=? AND password=?";
         try
         {
@@ -148,14 +145,17 @@ public class JPanel_jugar extends javax.swing.JPanel
 
             result.last();
             int numeroConsultas = result.getRow();
-           //Public static int showMessageDialog(component, titulo, tipomensaje,icono)
-            JOptionPane.showMessageDialog(null, "NUMERO DE CONSULTAS ->"+numeroConsultas);
             
+            if (numeroConsultas > 0)
+            {
+                verificado = true;
+            }
+
         } catch (SQLException ex)
         {
             Logger.getLogger(JPanel_jugar.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return false;
+        return verificado;
     }
 
     private void jTextField_nombreUsuarioActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_jTextField_nombreUsuarioActionPerformed
