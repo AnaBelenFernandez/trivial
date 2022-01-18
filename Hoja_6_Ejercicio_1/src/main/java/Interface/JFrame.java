@@ -5,6 +5,8 @@
  */
 package Interface;
 
+import java.awt.Color;
+
 /**
  *
  * @author usuario
@@ -15,9 +17,21 @@ public class JFrame extends javax.swing.JFrame
     /**
      * Creates new form JFrame
      */
+    JPanel_jugar panelJugar;
+   
+    //InterfazRegistro registro;
     public JFrame()
     {
         initComponents();
+        panelJugar=new JPanel_jugar(this,true);
+        //registro=new InterfazRegistro(this, true);
+        this.setTitle("Concurso de preguntas");
+      setSize(500,500);
+        setLocationRelativeTo(null);
+         this.getContentPane().add(this.panelJugar);
+         this.setBackground(Color.yellow);
+         
+      
     }
 
     /**
@@ -29,7 +43,7 @@ public class JFrame extends javax.swing.JFrame
     private void initComponents()
     {
 
-        jPanel1 = new javax.swing.JPanel();
+        inicio = new javax.swing.JPanel();
         botonIniciarSesion = new javax.swing.JButton();
         botonRegistro = new javax.swing.JButton();
         menuBar = new javax.swing.JMenuBar();
@@ -60,20 +74,20 @@ public class JFrame extends javax.swing.JFrame
             }
         });
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+        javax.swing.GroupLayout inicioLayout = new javax.swing.GroupLayout(inicio);
+        inicio.setLayout(inicioLayout);
+        inicioLayout.setHorizontalGroup(
+            inicioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(inicioLayout.createSequentialGroup()
                 .addGap(125, 125, 125)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(inicioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(botonRegistro, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(botonIniciarSesion))
                 .addContainerGap(173, Short.MAX_VALUE))
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+        inicioLayout.setVerticalGroup(
+            inicioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(inicioLayout.createSequentialGroup()
                 .addGap(88, 88, 88)
                 .addComponent(botonIniciarSesion)
                 .addGap(43, 43, 43)
@@ -81,7 +95,7 @@ public class JFrame extends javax.swing.JFrame
                 .addContainerGap(84, Short.MAX_VALUE))
         );
 
-        getContentPane().add(jPanel1, "card2");
+        getContentPane().add(inicio, "card2");
 
         fileMenu.setMnemonic('f');
         fileMenu.setText("Archivo");
@@ -123,14 +137,17 @@ public class JFrame extends javax.swing.JFrame
 
     private void botonIniciarSesionActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_botonIniciarSesionActionPerformed
     {//GEN-HEADEREND:event_botonIniciarSesionActionPerformed
-JPanel_jugar login=new JPanel_jugar(this, true);   
-login.setVisible(true);// TODO add your handling code here:
+
+panelJugar.setVisible(true);
+inicio.setVisible(false);
+            // TODO add your handling code here:
+//this.add(panelJugar);
     }//GEN-LAST:event_botonIniciarSesionActionPerformed
 
     private void botonRegistroActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_botonRegistroActionPerformed
     {//GEN-HEADEREND:event_botonRegistroActionPerformed
-        InterfazRegistro registro=new InterfazRegistro(this, true);
-registro.setVisible(true);// TODO add your handling code here:
+        
+//registro.setVisible(true);// TODO add your handling code here:
     }//GEN-LAST:event_botonRegistroActionPerformed
 
     /**
@@ -186,7 +203,7 @@ registro.setVisible(true);// TODO add your handling code here:
     private javax.swing.JMenuItem exitMenuItem;
     private javax.swing.JMenu fileMenu;
     private javax.swing.JMenu helpMenu;
-    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel inicio;
     private javax.swing.JMenuBar menuBar;
     // End of variables declaration//GEN-END:variables
 
