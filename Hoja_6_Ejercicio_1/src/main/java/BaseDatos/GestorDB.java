@@ -26,7 +26,7 @@ public class GestorDB
 
         Connection conexion = Conexion.getInstance().getConnection();
         String sql = "INSERT INTO usuarios (nombre, apellidos, fecha_nacimiento, usuario, password) "
-                + "VALUES (?,?,?,?,?)";
+                + "VALUES (?,?,?,?,md5(?))";
 
         try ( PreparedStatement consulta = conexion.prepareStatement(sql))
         {
