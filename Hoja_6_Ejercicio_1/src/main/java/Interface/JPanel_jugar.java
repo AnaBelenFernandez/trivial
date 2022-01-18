@@ -5,8 +5,8 @@
  */
 package Interface;
 
-<<<<<<< HEAD
-=======
+
+
 
 import BaseDatos.Conexion;
 import BaseDatos.GestorDB;
@@ -17,7 +17,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
->>>>>>> 946629068967adaf8b5c361c28c5390e0e9f508c
+
 import java.awt.Frame;
 
 import BaseDatos.GestorDB;

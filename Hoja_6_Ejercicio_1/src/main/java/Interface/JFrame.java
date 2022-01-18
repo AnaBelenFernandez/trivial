@@ -7,8 +7,7 @@ package Interface;
 
 
 import java.awt.Color;
-=======
-import Interfaz.InterfazRegistrar;
+import Interface.InterfazRegistrar;
 
 
 /**
@@ -22,17 +21,20 @@ public class JFrame extends javax.swing.JFrame
      * Creates new form JFrame
      */
     JPanel_jugar panelJugar;
+    InterfazRegistrar registro;
    
     //InterfazRegistro registro;
     public JFrame()
     {
         initComponents();
         panelJugar=new JPanel_jugar(this,true);
+        registro=new InterfazRegistrar(this,true);
         //registro=new InterfazRegistro(this, true);
         this.setTitle("Concurso de preguntas");
       setSize(500,500);
         setLocationRelativeTo(null);
          this.getContentPane().add(this.panelJugar);
+         this.getContentPane().add(this.registro);
          this.setBackground(Color.yellow);
          
       
@@ -150,13 +152,11 @@ inicio.setVisible(false);
 
     private void botonRegistroActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_botonRegistroActionPerformed
     {//GEN-HEADEREND:event_botonRegistroActionPerformed
-<<<<<<< HEAD
-        
-//registro.setVisible(true);// TODO add your handling code here:
-=======
-  
 
->>>>>>> 946629068967adaf8b5c361c28c5390e0e9f508c
+        registro.setVisible(true);
+        inicio.setVisible(false);
+//registro.setVisible(true);// TODO add your handling code here:
+
     }//GEN-LAST:event_botonRegistroActionPerformed
 
     /**
