@@ -5,11 +5,11 @@
  */
 package Interface;
 
-<<<<<<< HEAD
+
 import java.awt.Color;
 =======
 import Interfaz.InterfazRegistrar;
->>>>>>> 946629068967adaf8b5c361c28c5390e0e9f508c
+
 
 /**
  *
