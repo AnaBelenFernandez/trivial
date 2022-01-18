@@ -5,6 +5,7 @@
  */
 package Interface;
 
+
 import BaseDatos.Conexion;
 import BaseDatos.GestorDB;
 import java.sql.PreparedStatement;
@@ -13,6 +14,11 @@ import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+
+import java.awt.Frame;
+
+import BaseDatos.GestorDB;
+
 
 /**
  *
@@ -26,6 +32,10 @@ public class JPanel_jugar extends javax.swing.JPanel
      */
     public JPanel_jugar()
     {
+        initComponents();
+    }
+    public JPanel_jugar(Frame parent, boolean modal) {
+        
         initComponents();
     }
 
