@@ -28,6 +28,8 @@ public class JPanel_jugar extends javax.swing.JPanel
     /**
      * Creates new form JPanel_jugar
      */
+    JPanel_jugar panelJugar;
+    JPanel_pregunta panelPregunta;
     public JPanel_jugar()
     {
         initComponents();
@@ -39,6 +41,9 @@ public class JPanel_jugar extends javax.swing.JPanel
         initComponents();
         setSize(500, 500);
 
+        panelJugar=new JPanel_jugar();
+        panelPregunta=new JPanel_pregunta();
+        panelJugar.add(panelPregunta, 1);
     }
 
     /**
@@ -127,7 +132,10 @@ public class JPanel_jugar extends javax.swing.JPanel
         //verificar que nombre y password son correctos
         GestorDB gestor = new GestorDB();
         if (verificar(usuario, password))
-            gestor.jugar(usuario, password);
+        {
+           // gestor.jugar(usuario, password);
+            panelPregunta.setVisible(true);
+        }
         else
             JOptionPane.showMessageDialog(null, "Se han introducido erróneamente la contraseña o nombre de usuario :S");
     }//GEN-LAST:event_jButton_jugarActionPerformed

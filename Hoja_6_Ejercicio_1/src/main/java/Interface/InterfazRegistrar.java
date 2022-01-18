@@ -19,6 +19,7 @@ public class InterfazRegistrar extends javax.swing.JPanel
 {
 
     GestorDB gestor = new GestorDB();
+    JFrame inicio;
 
     /**
      * Creates new form InterfazRegistrar
@@ -26,6 +27,12 @@ public class InterfazRegistrar extends javax.swing.JPanel
     public InterfazRegistrar()
     {
         initComponents();
+        inicio=new JFrame();
+    }
+
+    InterfazRegistrar(JFrame aThis, boolean b)
+    {
+       throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     /**
@@ -189,12 +196,18 @@ public class InterfazRegistrar extends javax.swing.JPanel
                     this.jTextField_Usuario.getText(),
                     this.jTextField_Contra.getText());
 
-            if (respuesta == true)
+            if (respuesta == true){
                 //System.out.println("Usuario registrado correctamente");
                 JOptionPane.showMessageDialog(null, "Usuario registrado correctamente!");
+            inicio.setVisible(false);
+            //aquí hay que conectar con la pantalla deljuego
+            }
+           
             else
                 //System.out.println("Error al registrar usuario");
                 JOptionPane.showMessageDialog(null, "Error al registrar usuario");
+                inicio.setVisible(true);
+                this.setVisible(false);
         }
 
 
