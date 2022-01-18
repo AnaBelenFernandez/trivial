@@ -131,8 +131,8 @@ login.setVisible(true);// TODO add your handling code here:
 
     private void botonRegistroActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_botonRegistroActionPerformed
     {//GEN-HEADEREND:event_botonRegistroActionPerformed
-        InterfazRegistrar registro=new InterfazRegistar(this, true);
-registro.setVisible(true);// TODO add your handling code here:
+  
+
     }//GEN-LAST:event_botonRegistroActionPerformed
 
     /**

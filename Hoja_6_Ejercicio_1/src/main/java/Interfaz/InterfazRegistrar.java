@@ -9,6 +9,7 @@ import BaseDatos.GestorDB;
 import Modelo.Usuario;
 import java.sql.Date;
 import java.time.LocalDate;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -16,8 +17,9 @@ import java.time.LocalDate;
  */
 public class InterfazRegistrar extends javax.swing.JPanel
 {
-    
+
     GestorDB gestor = new GestorDB();
+
     /**
      * Creates new form InterfazRegistrar
      */
@@ -162,18 +164,40 @@ public class InterfazRegistrar extends javax.swing.JPanel
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_jButton1ActionPerformed
     {//GEN-HEADEREND:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-        boolean respuesta;
-        LocalDate fecha = LocalDate.of(Integer.valueOf(this.jTextField_Anio), Integer.valueOf(this.jTextField_Mes), Integer.valueOf(this.jTextField_Dia));
-        Date fecha = Date.valueOf()
-        respuesta = gestor.loginUser(this.jTextField_Nombre, this.jTextField_Apellidos, );
 
-        System.out.println("");
-        if (respuesta == true)
-            System.out.println("Usuario registrado correctamente");
-        else
-            System.out.println("Error al registrar usuario");
-        System.out.println("");
+        if (this.jTextField_Nombre.getText().isEmpty()
+                || this.jTextField_Apellidos.getText().isEmpty()
+                || this.jTextField_Dia.getText().isEmpty()
+                || this.jTextField_Mes.getText().isEmpty()
+                || this.jTextField_Anio.getText().isEmpty()
+                || this.jTextField_Usuario.getText().isEmpty()
+                || this.jTextField_Contra.getText().isEmpty())
+        {
+            JOptionPane.showMessageDialog(null, "Error al introducir los datos, "
+                    + "\n Rellena todos los campos");
+        } else
+        {
+            boolean respuesta;
+            int anio = Integer.valueOf(this.jTextField_Anio.getText());
+            int mes = Integer.valueOf(this.jTextField_Mes.getText());
+            int dia = Integer.valueOf(this.jTextField_Dia.getText());
+            LocalDate fechaAux = LocalDate.of(anio, mes, dia);
+            Date fecha = Date.valueOf(fechaAux);
+            respuesta = gestor.loginUser(this.jTextField_Nombre.getText(),
+                    this.jTextField_Apellidos.getText(),
+                    fecha,
+                    this.jTextField_Usuario.getText(),
+                    this.jTextField_Contra.getText());
+
+            if (respuesta == true)
+                //System.out.println("Usuario registrado correctamente");
+                JOptionPane.showMessageDialog(null, "Usuario registrado correctamente!");
+            else
+                //System.out.println("Error al registrar usuario");
+                JOptionPane.showMessageDialog(null, "Error al registrar usuario");
+        }
+
+
     }//GEN-LAST:event_jButton1ActionPerformed
 
 
