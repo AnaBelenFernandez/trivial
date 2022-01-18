@@ -5,6 +5,8 @@
  */
 package Interface;
 
+import javax.swing.ButtonGroup;
+
 /**
  *
  * @author usuario
@@ -18,6 +20,15 @@ public class JPanel_pregunta extends javax.swing.JPanel
     public JPanel_pregunta()
     {
         initComponents();
+         setSize(500,500);
+     ButtonGroup radioGroup = new ButtonGroup();
+     radioGroup.add(RBRespuesta1);
+     radioGroup.add(RBRespuesta2);
+     radioGroup.add(RBRespuesta3);
+     radioGroup.add(RBRespuesta4);
+     
+     
+
     }
 
     /**
@@ -29,56 +40,65 @@ public class JPanel_pregunta extends javax.swing.JPanel
     private void initComponents()
     {
 
-        jRadioButton1 = new javax.swing.JRadioButton();
-        jRadioButton2 = new javax.swing.JRadioButton();
-        jRadioButton3 = new javax.swing.JRadioButton();
-        jRadioButton4 = new javax.swing.JRadioButton();
+        RBRespuesta1 = new javax.swing.JRadioButton();
+        RBRespuesta3 = new javax.swing.JRadioButton();
+        RBRespuesta2 = new javax.swing.JRadioButton();
+        RBRespuesta4 = new javax.swing.JRadioButton();
+        textPregunta = new javax.swing.JTextField();
+        btnSigPregunta = new javax.swing.JButton();
 
-        jRadioButton1.setText("jRadioButton1");
-
-        jRadioButton2.setText("jRadioButton2");
-
-        jRadioButton3.setText("jRadioButton3");
-
-        jRadioButton4.setText("jRadioButton4");
+        btnSigPregunta.setText("Siguiente Pregunta");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(67, Short.MAX_VALUE)
+                .addComponent(textPregunta, javax.swing.GroupLayout.PREFERRED_SIZE, 265, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(68, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
-                .addGap(43, 43, 43)
+                .addGap(125, 125, 125)
+                .addComponent(btnSigPregunta)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(63, 63, 63)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jRadioButton3)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 70, Short.MAX_VALUE)
-                        .addComponent(jRadioButton4))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jRadioButton1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jRadioButton2)))
-                .addGap(41, 41, 41))
+                    .addComponent(RBRespuesta2)
+                    .addComponent(RBRespuesta1))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(RBRespuesta3)
+                    .addComponent(RBRespuesta4, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(39, 39, 39))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(127, 127, 127)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jRadioButton1)
-                    .addComponent(jRadioButton2))
-                .addGap(51, 51, 51)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jRadioButton3)
-                    .addComponent(jRadioButton4))
-                .addContainerGap(76, Short.MAX_VALUE))
+                .addGap(38, 38, 38)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(textPregunta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(42, 42, 42)
+                        .addComponent(RBRespuesta1))
+                    .addComponent(RBRespuesta3))
+                .addGap(28, 28, 28)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(RBRespuesta2)
+                    .addComponent(RBRespuesta4))
+                .addGap(52, 52, 52)
+                .addComponent(btnSigPregunta)
+                .addContainerGap(32, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JRadioButton jRadioButton1;
-    private javax.swing.JRadioButton jRadioButton2;
-    private javax.swing.JRadioButton jRadioButton3;
-    private javax.swing.JRadioButton jRadioButton4;
+    private javax.swing.JRadioButton RBRespuesta1;
+    private javax.swing.JRadioButton RBRespuesta2;
+    private javax.swing.JRadioButton RBRespuesta3;
+    private javax.swing.JRadioButton RBRespuesta4;
+    private javax.swing.JButton btnSigPregunta;
+    private javax.swing.JTextField textPregunta;
     // End of variables declaration//GEN-END:variables
 }

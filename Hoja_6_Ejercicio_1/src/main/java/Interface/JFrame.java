@@ -32,15 +32,14 @@ public class JFrame extends javax.swing.JFrame
     public JFrame()
     {
         initComponents();
-        panelJugar=new JPanel_jugar(this,true);
-        registro=new InterfazRegistrar(this,true);
-        //registro=new InterfazRegistro(this, true);
+        panelJugar = new JPanel_jugar(this, true);
+        registro = new InterfazRegistrar(this,true);
         this.setTitle("Concurso de preguntas");
-      setSize(500,500);
+        setSize(500, 500);
         setLocationRelativeTo(null);
-         this.getContentPane().add(this.panelJugar);
-         this.getContentPane().add(this.registro);
-         this.setBackground(Color.yellow);
+        this.getContentPane().add(this.panelJugar);
+        this.getContentPane().add(this.registro);
+       
          
       
     }
@@ -168,7 +167,7 @@ inicio.setVisible(false);
 
         registro.setVisible(true);
         inicio.setVisible(false);
-//registro.setVisible(true);// TODO add your handling code here:
+//TODO add your handling code here:
 
 
     }//GEN-LAST:event_botonRegistroActionPerformed
