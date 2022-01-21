@@ -17,6 +17,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 import javax.swing.ButtonGroup;
+import javax.swing.JPanel;
 
 /**
  *
@@ -44,7 +45,7 @@ public class JPanel_pregunta extends javax.swing.JPanel
 
     }
     
-     public JPanel_pregunta(Panel parent, boolean modal) {
+     public JPanel_pregunta(JPanel parent, boolean modal) {
         
         initComponents();
          setSize(500,500);
@@ -69,8 +70,11 @@ public void preguntarAUsuario() throws SQLException
         PreparedStatement consultaPreguntas = Conexion.getInstance().getConnection().prepareStatement(sqlPreguntas);
         ResultSet resultPreguntas = consultaPreguntas.executeQuery();
         System.out.println("¡Que comience el juego!");
+        
         while (resultPreguntas.next())
         {
+            siguientePregunta = false;
+            
             int id = resultPreguntas.getInt("id");
             String enunciado = resultPreguntas.getString("enunciado");
             int veces_formulada = resultPreguntas.getInt("veces_formulada");
@@ -235,7 +239,7 @@ public void preguntarAUsuario() throws SQLException
 
     private void btnSigPreguntaActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btnSigPreguntaActionPerformed
     {//GEN-HEADEREND:event_btnSigPreguntaActionPerformed
-        // TODO add your handling code here:
+        siguientePregunta = true;
     }//GEN-LAST:event_btnSigPreguntaActionPerformed
 
 
