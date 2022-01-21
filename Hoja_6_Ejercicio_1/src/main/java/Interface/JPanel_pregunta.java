@@ -9,6 +9,7 @@ import BaseDatos.Conexion;
 import BaseDatos.GestorDB;
 import Modelo.Respuesta;
 import java.awt.Frame;
+import java.awt.Panel;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -23,7 +24,7 @@ import javax.swing.ButtonGroup;
  */
 public class JPanel_pregunta extends javax.swing.JPanel
 {
-
+    boolean siguientePregunta = false;
     /**
      * Creates new form JPanel_pregunta
      */
@@ -43,7 +44,7 @@ public class JPanel_pregunta extends javax.swing.JPanel
 
     }
     
-     public JPanel_pregunta(Frame parent, boolean modal) {
+     public JPanel_pregunta(Panel parent, boolean modal) {
         
         initComponents();
          setSize(500,500);
@@ -75,7 +76,8 @@ public void preguntarAUsuario() throws SQLException
             int veces_formulada = resultPreguntas.getInt("veces_formulada");
             int veces_acertada = resultPreguntas.getInt("veces_acertada");
 
-            System.out.printf("%-5s %-10s\n", id, enunciado);
+            //System.out.printf("%-5s %-10s\n", id, enunciado); EN VEZ DE SOUT QUE SE VEA EN EL LABEL
+            jLabel_pregunta.setText(id + " - " +enunciado);
             //obtenemos las respuestas de dicha pregunta y las mostramos
             List<Respuesta> respuestas = respuestasPorPregunta(id);
             int contador = 1;
@@ -90,7 +92,8 @@ public void preguntarAUsuario() throws SQLException
             //el usuario responde 1/2/3/4 en funcion de la respuesta. Se comprueba si dicha respuesta es correcta
             System.out.println("Introduzca su respuesta: (1/2/3/4)");
             int respuestaUsuario = teclado.nextInt();
-            teclado.nextLine();
+            //teclado.nextLine(); NO PASA AL DAR AL ENTER, SINO AL CLICAR EN EL BUTTON
+            
             if (respuestas.get(respuestaUsuario - 1).isCorrecta())
             {
                 System.out.println("Enhorabuena, ¡respuesta acertada!");
@@ -173,43 +176,52 @@ public void preguntarAUsuario() throws SQLException
         RBRespuesta3 = new javax.swing.JRadioButton();
         RBRespuesta2 = new javax.swing.JRadioButton();
         RBRespuesta4 = new javax.swing.JRadioButton();
-        textPregunta = new javax.swing.JTextField();
         btnSigPregunta = new javax.swing.JButton();
+        jLabel_pregunta = new javax.swing.JLabel();
 
         btnSigPregunta.setText("Siguiente Pregunta");
+        btnSigPregunta.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                btnSigPreguntaActionPerformed(evt);
+            }
+        });
+
+        jLabel_pregunta.setText("PREGUNTA");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(67, Short.MAX_VALUE)
-                .addComponent(textPregunta, javax.swing.GroupLayout.PREFERRED_SIZE, 265, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(68, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addGap(125, 125, 125)
                 .addComponent(btnSigPregunta)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+            .addGroup(layout.createSequentialGroup()
                 .addGap(63, 63, 63)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(RBRespuesta2)
-                    .addComponent(RBRespuesta1))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(RBRespuesta3)
-                    .addComponent(RBRespuesta4, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(39, 39, 39))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel_pregunta, javax.swing.GroupLayout.PREFERRED_SIZE, 261, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(76, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(RBRespuesta2)
+                            .addComponent(RBRespuesta1))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(RBRespuesta3)
+                            .addComponent(RBRespuesta4, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(39, 39, 39))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(38, 38, 38)
+                .addGap(41, 41, 41)
+                .addComponent(jLabel_pregunta)
+                .addGap(51, 51, 51)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(textPregunta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(42, 42, 42)
-                        .addComponent(RBRespuesta1))
+                    .addComponent(RBRespuesta1)
                     .addComponent(RBRespuesta3))
                 .addGap(28, 28, 28)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -221,6 +233,11 @@ public void preguntarAUsuario() throws SQLException
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnSigPreguntaActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btnSigPreguntaActionPerformed
+    {//GEN-HEADEREND:event_btnSigPreguntaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnSigPreguntaActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JRadioButton RBRespuesta1;
@@ -228,6 +245,6 @@ public void preguntarAUsuario() throws SQLException
     private javax.swing.JRadioButton RBRespuesta3;
     private javax.swing.JRadioButton RBRespuesta4;
     private javax.swing.JButton btnSigPregunta;
-    private javax.swing.JTextField textPregunta;
+    private javax.swing.JLabel jLabel_pregunta;
     // End of variables declaration//GEN-END:variables
 }
