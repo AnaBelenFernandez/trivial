@@ -43,7 +43,7 @@ public class JPanel_jugar extends javax.swing.JPanel
 
         panelJugar=new JPanel_jugar();
         panelPregunta=new JPanel_pregunta();
-        panelJugar.add(panelPregunta, 1);
+        
     }
 
     /**
@@ -60,6 +60,7 @@ public class JPanel_jugar extends javax.swing.JPanel
         jTextField_nombreUsuario = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         jTextField_password = new javax.swing.JTextField();
+        jButton_inicio = new javax.swing.JButton();
 
         jButton_jugar.setBackground(new java.awt.Color(104, 85, 100));
         jButton_jugar.setFont(new java.awt.Font("Ubuntu", 3, 15)); // NOI18N
@@ -88,15 +89,22 @@ public class JPanel_jugar extends javax.swing.JPanel
 
         jTextField_password.setToolTipText("");
 
+        jButton_inicio.setFont(new java.awt.Font("Ubuntu", 1, 15)); // NOI18N
+        jButton_inicio.setText("INICIO");
+        jButton_inicio.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                jButton_inicioActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(99, 99, 99)
-                        .addComponent(jButton_jugar, javax.swing.GroupLayout.PREFERRED_SIZE, 223, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(129, 129, 129)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -105,7 +113,12 @@ public class JPanel_jugar extends javax.swing.JPanel
                             .addComponent(jTextField_password)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(156, 156, 156)
-                        .addComponent(jLabel2)))
+                        .addComponent(jLabel2))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(99, 99, 99)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jButton_inicio, javax.swing.GroupLayout.PREFERRED_SIZE, 223, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jButton_jugar, javax.swing.GroupLayout.PREFERRED_SIZE, 223, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(78, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -121,7 +134,9 @@ public class JPanel_jugar extends javax.swing.JPanel
                 .addComponent(jTextField_password, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(34, 34, 34)
                 .addComponent(jButton_jugar)
-                .addContainerGap(65, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jButton_inicio)
+                .addContainerGap(21, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -135,6 +150,7 @@ public class JPanel_jugar extends javax.swing.JPanel
         {
            // gestor.jugar(usuario, password);
             panelPregunta.setVisible(true);
+            panelJugar.setVisible(false);
         }
         else
             JOptionPane.showMessageDialog(null, "Se han introducido erróneamente la contraseña o nombre de usuario :S");
@@ -171,8 +187,14 @@ public class JPanel_jugar extends javax.swing.JPanel
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField_nombreUsuarioActionPerformed
 
+    private void jButton_inicioActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_jButton_inicioActionPerformed
+    {//GEN-HEADEREND:event_jButton_inicioActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton_inicioActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton_inicio;
     private javax.swing.JButton jButton_jugar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
