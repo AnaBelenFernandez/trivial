@@ -5,6 +5,7 @@
  */
 package Interface;
 
+import BaseDatos.GestorDB;
 import javax.swing.ButtonGroup;
 
 /**
@@ -17,6 +18,7 @@ public class JPanel_pregunta extends javax.swing.JPanel
     /**
      * Creates new form JPanel_pregunta
      */
+    GestorDB gestor;
     public JPanel_pregunta()
     {
         initComponents();
@@ -26,10 +28,18 @@ public class JPanel_pregunta extends javax.swing.JPanel
      radioGroup.add(RBRespuesta2);
      radioGroup.add(RBRespuesta3);
      radioGroup.add(RBRespuesta4);
-     
+     gestor=new GestorDB();
+
      
 
     }
+    public void cargarPregunta(){
+    }
+public void colorear(){
+ 
+
+
+}
 
     /**
      * This method is called from within the constructor to initialize the form. WARNING: Do NOT

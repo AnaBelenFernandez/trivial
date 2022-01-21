@@ -58,7 +58,7 @@ public class InterfazRegistrar extends javax.swing.JPanel
         jTextField_Contra = new javax.swing.JTextField();
         jTextField_Usuario = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        btnCancelar = new javax.swing.JButton();
         jLabel7 = new javax.swing.JLabel();
         jTextField_Dia = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
@@ -85,7 +85,14 @@ public class InterfazRegistrar extends javax.swing.JPanel
             }
         });
 
-        jButton2.setText("Cancelar");
+        btnCancelar.setText("Cancelar");
+        btnCancelar.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                btnCancelarActionPerformed(evt);
+            }
+        });
 
         jLabel7.setText("Dia");
 
@@ -101,7 +108,7 @@ public class InterfazRegistrar extends javax.swing.JPanel
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jButton1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton2)
+                .addComponent(btnCancelar)
                 .addGap(26, 26, 26))
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
@@ -168,7 +175,7 @@ public class InterfazRegistrar extends javax.swing.JPanel
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jButton1)
-                            .addComponent(jButton2))
+                            .addComponent(btnCancelar))
                         .addContainerGap())))
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -186,6 +193,8 @@ public class InterfazRegistrar extends javax.swing.JPanel
         {
             JOptionPane.showMessageDialog(null, "Error al introducir los datos, "
                     + "\n Rellena todos los campos");
+            inicio.setVisible(true);
+            this.setVisible(false);
         } else
         {
             boolean respuesta;
@@ -217,10 +226,16 @@ public class InterfazRegistrar extends javax.swing.JPanel
 
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btnCancelarActionPerformed
+    {//GEN-HEADEREND:event_btnCancelarActionPerformed
+inicio.setVisible(true); 
+this.setVisible(false);// TODO add your handling code here:
+    }//GEN-LAST:event_btnCancelarActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnCancelar;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

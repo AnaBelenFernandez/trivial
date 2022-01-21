@@ -27,6 +27,7 @@ public class JFrame extends javax.swing.JFrame
      */
     JPanel_jugar panelJugar;
     InterfazRegistrar registro;
+ 
    
     //InterfazRegistro registro;
     public JFrame()
