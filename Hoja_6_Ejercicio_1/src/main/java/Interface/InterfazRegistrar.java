@@ -31,6 +31,7 @@ public class InterfazRegistrar extends javax.swing.JPanel
         inicio=new JFrame();
     }
 
+
  public InterfazRegistrar(Frame parent, boolean modal) {
         
         initComponents();

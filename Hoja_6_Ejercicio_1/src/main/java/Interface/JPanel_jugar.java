@@ -5,9 +5,6 @@
  */
 package Interface;
 
-
-
-
 import BaseDatos.Conexion;
 import BaseDatos.GestorDB;
 import java.sql.PreparedStatement;
@@ -17,11 +14,9 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
-
 import java.awt.Frame;
 
 import BaseDatos.GestorDB;
-
 
 /**
  *
@@ -33,16 +28,22 @@ public class JPanel_jugar extends javax.swing.JPanel
     /**
      * Creates new form JPanel_jugar
      */
+    JPanel_jugar panelJugar;
+    JPanel_pregunta panelPregunta;
     public JPanel_jugar()
     {
         initComponents();
     }
-    public JPanel_jugar(Frame parent, boolean modal) {
-        
+
+    public JPanel_jugar(Frame parent, boolean modal)
+    {
+
         initComponents();
-         setSize(500,500);
-        
-       
+        setSize(500, 500);
+
+        panelJugar=new JPanel_jugar();
+        panelPregunta=new JPanel_pregunta();
+        panelJugar.add(panelPregunta, 1);
     }
 
     /**
@@ -131,13 +132,17 @@ public class JPanel_jugar extends javax.swing.JPanel
         //verificar que nombre y password son correctos
         GestorDB gestor = new GestorDB();
         if (verificar(usuario, password))
-            gestor.jugar(usuario, password);
+        {
+           // gestor.jugar(usuario, password);
+            panelPregunta.setVisible(true);
+        }
         else
             JOptionPane.showMessageDialog(null, "Se han introducido erróneamente la contraseña o nombre de usuario :S");
     }//GEN-LAST:event_jButton_jugarActionPerformed
 
     public boolean verificar(String usuario, String password)
     {
+        boolean verificado = false;
         String sql = "SELECT usuario, password from usuarios WHERE usuario=? AND password=?";
         try
         {
@@ -148,14 +153,17 @@ public class JPanel_jugar extends javax.swing.JPanel
 
             result.last();
             int numeroConsultas = result.getRow();
-           //Public static int showMessageDialog(component, titulo, tipomensaje,icono)
-            JOptionPane.showMessageDialog(null, "NUMERO DE CONSULTAS ->"+numeroConsultas);
             
+            if (numeroConsultas > 0)
+            {
+                verificado = true;
+            }
+
         } catch (SQLException ex)
         {
             Logger.getLogger(JPanel_jugar.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return false;
+        return verificado;
     }
 
     private void jTextField_nombreUsuarioActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_jTextField_nombreUsuarioActionPerformed

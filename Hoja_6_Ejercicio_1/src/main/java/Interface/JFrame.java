@@ -7,7 +7,12 @@ package Interface;
 
 
 import java.awt.Color;
+
+
+
+
 import Interface.InterfazRegistrar;
+
 
 
 /**
@@ -153,9 +158,18 @@ inicio.setVisible(false);
     private void botonRegistroActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_botonRegistroActionPerformed
     {//GEN-HEADEREND:event_botonRegistroActionPerformed
 
+
+        
+//registro.setVisible(true);// TODO add your handling code here:
+
+  
+
+
+
         registro.setVisible(true);
         inicio.setVisible(false);
 //TODO add your handling code here:
+
 
     }//GEN-LAST:event_botonRegistroActionPerformed
 
